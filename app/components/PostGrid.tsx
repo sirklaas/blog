@@ -48,17 +48,23 @@ export default function PostGrid({ initialPosts, totalPages }: PostGridProps) {
 
   async function loadMore() {
     setLoading(true)
-    const nextPage = currentPage + 1
-    const res = await fetch(`/api/posts?page=${nextPage}`)
-    const data = await res.json()
-    setPosts((prev) => [...prev, ...data.items])
-    setCurrentPage(nextPage)
-    setLoading(false)
+    try {
+      const nextPage = currentPage + 1
+      const res = await fetch(`/api/posts?page=${nextPage}`)
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      setPosts((prev) => [...prev, ...data.items])
+      setCurrentPage(nextPage)
+    } catch (err) {
+      console.error("Failed to load more posts:", err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-[12px] px-[20px] py-[16px] bg-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[12px] px-[20px] py-[16px] bg-white">
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
