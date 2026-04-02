@@ -17,7 +17,7 @@ export default function Header({ backLink = false }: HeaderProps) {
             href="https://www.facebook.com/quizmasterklaas"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[22px] h-[22px] rounded-full bg-black/15 block flex items-center justify-center"
+            className="w-[22px] h-[22px] rounded-full bg-black/15 flex items-center justify-center"
             aria-label="Facebook"
           >
             <svg width="10" height="10" viewBox="0 0 24 24" fill="rgba(0,0,0,0.6)" aria-hidden="true">
@@ -28,7 +28,7 @@ export default function Header({ backLink = false }: HeaderProps) {
             href="https://www.instagram.com/quizmasterklaas/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[22px] h-[22px] rounded-full bg-black/15 block flex items-center justify-center"
+            className="w-[22px] h-[22px] rounded-full bg-black/15 flex items-center justify-center"
             aria-label="Instagram"
           >
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" aria-hidden="true">
@@ -39,7 +39,7 @@ export default function Header({ backLink = false }: HeaderProps) {
           </a>
           <a
             href="mailto:klaas@pinkmilk.eu"
-            className="w-[22px] h-[22px] rounded-full bg-black/15 block flex items-center justify-center"
+            className="w-[22px] h-[22px] rounded-full bg-black/15 flex items-center justify-center"
             aria-label="Email"
           >
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" aria-hidden="true">
