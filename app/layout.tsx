@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Semi_Condensed } from "next/font/google";
+import { Barlow_Semi_Condensed, Nunito } from "next/font/google";
 import "./globals.css";
 
 const barlow = Barlow_Semi_Condensed({
@@ -8,9 +8,15 @@ const barlow = Barlow_Semi_Condensed({
   variable: "--font-barlow",
 });
 
+const nunito = Nunito({
+  weight: ["400", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-nunito",
+});
+
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Blog",
+  title: "Blog — PinkMilk",
+  description: "Stories and insights from PinkMilk Entertainment",
 };
 
 export default function RootLayout({
@@ -19,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${barlow.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="nl" className={`${barlow.variable} ${nunito.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-nunito">{children}</body>
     </html>
   );
 }
