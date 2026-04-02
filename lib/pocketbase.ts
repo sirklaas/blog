@@ -16,7 +16,7 @@ export type Post = {
   published: boolean
 }
 
-type PBListResponse = {
+export type PBListResponse = {
   page: number
   perPage: number
   totalPages: number
@@ -26,18 +26,19 @@ type PBListResponse = {
 
 const PB_URL = process.env.POCKETBASE_URL
 
-if (!PB_URL) {
-  throw new Error("POCKETBASE_URL environment variable is not set")
+function requirePbUrl(): string {
+  if (!PB_URL) throw new Error("POCKETBASE_URL environment variable is not set")
+  return PB_URL
 }
 
 export function thumbnailUrl(post: Post): string {
   if (!post.thumbnail) return ""
-  return `${PB_URL}/api/files/socials/${post.id}/${post.thumbnail}`
+  return `${requirePbUrl()}/api/files/socials/${post.id}/${post.thumbnail}`
 }
 
 export async function getPosts(page = 1): Promise<PBListResponse> {
   const res = await fetch(
-    `${PB_URL}/api/collections/socials/records?filter=(published=true)&sort=-date&page=${page}&perPage=6`,
+    `${requirePbUrl()}/api/collections/socials/records?filter=(published=true)&sort=-date&page=${page}&perPage=6`,
     { cache: "no-store" }
   )
   if (!res.ok) throw new Error(`PocketBase error: ${res.status}`)
@@ -46,7 +47,7 @@ export async function getPosts(page = 1): Promise<PBListResponse> {
 
 export async function getPost(id: string): Promise<Post | null> {
   const res = await fetch(
-    `${PB_URL}/api/collections/socials/records/${id}`,
+    `${requirePbUrl()}/api/collections/socials/records/${id}`,
     { cache: "no-store" }
   )
   if (res.status === 404) return null
