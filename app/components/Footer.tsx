@@ -57,9 +57,9 @@ export default function Footer() {
               Schipholweg 101 A<br />
               2316 XC Leiden
             </p>
-            <p className="font-nunito text-[9px] text-white/50 leading-[1.7] mt-[4px]">
-              0031619399297
-            </p>
+            <a href="tel:+31619399297" className="font-nunito text-[9px] text-white/50 leading-[1.7] mt-[4px] block">
+              +31 6 19 39 92 97
+            </a>
             <a
               href="mailto:klaas@pinkmilk.eu"
               className="font-nunito text-[9px] text-[#F9A826] hover:text-[#ff69b4] transition-colors"
