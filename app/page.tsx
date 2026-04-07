@@ -25,16 +25,23 @@ export default async function BlogMainPage() {
         )}
 
         {/* Intro block */}
-        <div className="px-[20px] py-[16px] border-b border-[#eee] bg-white">
-          <p className="font-nunito text-[9px] font-bold text-[#e84e1b] tracking-[0.12em] uppercase mb-[5px]">
-            Blog
-          </p>
-          <h1 className="font-barlow font-light text-[28px] leading-none text-[#1a1a1a]">
-            Stories &amp; insights
+        <div className="px-[20px] py-[45px] border-b border-[#eee] bg-white">
+          <h3 className="font-nunito text-[9px] font-bold text-[#e84e1b] tracking-[0.12em] uppercase mb-[5px] text-center">
+            {heroPost?.intro_heading}
+          </h3>
+          <h1 className="font-barlow text-[28px] leading-none text-[#1a1a1a] text-center" style={{ fontWeight: 900 }}>
+            {heroPost?.heading}
           </h1>
-          <p className="font-nunito text-[11px] text-[#666] mt-[6px] leading-relaxed max-w-[600px]">
-            Ideas, experiments, and things we&apos;ve learned building the pinkmilk content machine.
-          </p>
+          {heroPost?.sub_heading && (
+            <h2 className="font-barlow text-[17px] font-semibold text-[#666] mt-[6px] leading-relaxed text-center">
+              {heroPost.sub_heading}
+            </h2>
+          )}
+          {heroPost?.intro_body && (
+            <p className="font-nunito text-[11px] text-[#666] mt-[12px] leading-relaxed w-1/2 mx-auto text-center">
+              {heroPost.intro_body}
+            </p>
+          )}
         </div>
 
         {/* Card grid + load more */}

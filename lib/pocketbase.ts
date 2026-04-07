@@ -7,6 +7,7 @@ export type Post = {
   card_title: string
   heading: string
   intro_heading: string
+  sub_heading?: string
   intro_body: string
   thumbnail: string
   detail_heading: string

@@ -10,15 +10,10 @@ type PostGridProps = {
 }
 
 function PostCard({ post }: { post: Post }) {
-  const formattedDate = new Date(post.date).toLocaleDateString("nl-NL", {
-    day: "numeric",
-    month: "short",
-  })
-
   return (
     <Link href={`/${post.id}`} className="group block">
       <div className="border border-[#eee] rounded-[2px] overflow-hidden hover:shadow-md transition-shadow">
-        <div className="aspect-[4/3] overflow-hidden bg-[#f0f0f0]">
+        <div className="h-[110px] overflow-hidden bg-[#f0f0f0]">
           {post.hero_image_url && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -29,10 +24,22 @@ function PostCard({ post }: { post: Post }) {
           )}
         </div>
         <div className="p-[8px] bg-white">
-          <p className="font-nunito text-[9px] text-[#bbb] tracking-wide">{formattedDate}</p>
-          <p className="font-barlow font-light text-[13px] text-[#333] leading-tight mt-[2px]">
-            {post.card_title}
-          </p>
+          <h3 className="font-nunito text-[9px] font-bold text-[#e84e1b] tracking-[0.12em] uppercase mb-[5px] text-center">
+            {post.intro_heading}
+          </h3>
+          <h4 className="font-barlow text-[20px] leading-none text-[#1a1a1a] text-center" style={{ fontWeight: 900 }}>
+            {post.heading}
+          </h4>
+          {post.sub_heading && (
+            <h2 className="font-barlow text-[13px] font-semibold text-[#666] mt-[6px] leading-relaxed text-center">
+              {post.sub_heading}
+            </h2>
+          )}
+          {post.intro_body && (
+            <p className="font-nunito text-[11px] text-[#666] mt-[12px] leading-relaxed text-center">
+              {post.intro_body}
+            </p>
+          )}
         </div>
       </div>
     </Link>
@@ -63,15 +70,17 @@ export default function PostGrid({ initialPosts, totalPages }: PostGridProps) {
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[12px] px-[20px] py-[16px] bg-white">
+    <div className="bg-white">
+      <div className="w-full mx-auto">
+        <div className="grid grid-cols-[repeat(3,260px)] justify-center gap-[30px] py-[16px]">
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
+        </div>
       </div>
 
       {hasMore && (
-        <div className="text-center py-[14px] border-t border-[#eee] bg-white">
+        <div className="w-[840px] mx-auto text-center py-[14px] border-t border-[#eee]">
           <button
             onClick={loadMore}
             disabled={loading}
